@@ -8,22 +8,13 @@ const cors = require("cors");
 
 app.use(cookieParser());
 
-
-const allowedOrigins = [
-    'http://localhost:3000',
-    'http://localhost:3001'
-];
+app.use(express.json());
 const corsOptions = {
-    origin: function(origin, callback){
-        if(allowedOrigins.indexOf(origin)!==-1 || !origin){
-            callback(null, true);
-        }
-        else{
-            callback(new Error('Not allowed by CORS'));
-        }
-    } ,
+    origin:['http://localhost:3000',"http://localhost:3001"],
     credentials: true,
 } ;
+app.options("*", cors(corsOptions)); // Handle preflight requests globally
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
@@ -219,7 +210,10 @@ startServer();
 //       })
 //     res.send("done!");
 // })
-
+app.get('/test', (req, res) => {
+    res.send('Backend is reachable!');
+  });
+  
 app.get("/allHoldings",async(req,res)=>{
     let allHoldings = await HoldingsModel.find({});
     res.json(allHoldings);
@@ -248,4 +242,4 @@ app.listen(PORT, ()=>{
 
 
 app.use("/",authRoute);
-app.use(express.json());
+

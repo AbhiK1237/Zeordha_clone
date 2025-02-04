@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
@@ -85,6 +85,17 @@ const Menu = () => {
             >
               <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
                 Apps
+              </p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              style={{ textDecoration: "none" }}
+              to="http://localhost:3000/"
+              onClick={() => Cookies.remove("Token")}
+            >
+              <p className={selectedMenu === 7 ? activeMenuClass : menuClass}>
+                Logout
               </p>
             </Link>
           </li>

@@ -5,12 +5,6 @@ import RighSection from "./RightSection";
 import Universe from "./Universe";
 import Cookies from "js-cookie";
 function ProductPage() {
-  const token = Cookies.get("token");
-  if (token) {
-    console.log(token);
-  } else {
-    console.log("no token found");
-  }
   return (
     <>
       <Hero />
@@ -21,7 +15,6 @@ function ProductPage() {
         productLinkName="Try demo"
         productLink="http://localhost:3001/"
         productInfo="Learn more"
-        token={token}
         googlePlay=""
         appStore=""
       />

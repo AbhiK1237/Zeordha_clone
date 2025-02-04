@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../utils/useAuth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 function Navbar() {
+  const auth = getAuth();
+  const user = useAuth();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("Logout successful");
+    } catch (err) {
+      console.error("Error signing out:", err.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       setUser(user);
+  //     } else {
+  //       // User is signed out
+  //       setUser(null);
+  //     }
+  //   });
+
+  //   return () => unsubscribe(); // Cleanup on unmount
+  // }, [auth]);
+
   return (
     <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
       <div class="container p-2">
@@ -22,16 +49,6 @@ function Navbar() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/signup">
-                Signup
-              </Link>
-            </li>
-            {/* <li class="nav-item">
-              <Link class="nav-link active" aria-current="page" to="/login">
-                Login
-              </Link>
-            </li> */}
-            <li class="nav-item">
               <Link class="nav-link active" aria-current="page" to="/about">
                 About
               </Link>
@@ -51,6 +68,19 @@ function Navbar() {
                 Support
               </Link>
             </li>
+            {user ? (
+              <li class="nav-item">
+                <button onClick={handleLogout} className="nav-link active">
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li class="nav-item">
+                <Link className="nav-link active" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

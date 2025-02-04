@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 function Signup() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
@@ -36,12 +37,15 @@ function Signup() {
         },
         { withCredentials: true }
       );
-      const { success, message } = data;
+      console.log(data);
+      const { success, message, token } = data;
+
       if (success) {
         handleSuccess(message);
+        Cookies.set("Token", token);
         setTimeout(() => {
           navigate("/");
-        }, 1000);
+        }, 250);
       } else {
         handleError(message);
       }

@@ -1,7 +1,7 @@
 const User = require("../Models/UserModel");
 const { createSecretToken } = require("../Utils/SecretToken");
 const bcrypt = require("bcryptjs");
-
+require("dotenv").config()
 module.exports.Signup = async (req, res, next) => {
   try {
     const { email, password, username, createdAt } = req.body;
@@ -12,14 +12,14 @@ module.exports.Signup = async (req, res, next) => {
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
-      withCredentials: true,
-      secure:false,
+      secure:process.env.NODE_ENV === "production",
       httpOnly: true,
+      path:"/"
     });
     res
       .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
-    next();
+      .json({ message: "User signed in successfully", success: true, user, token });
+    
   } catch (error) {
     console.error(error);
   }
@@ -42,11 +42,12 @@ module.exports.Login = async (req, res, next) => {
     }
      const token = createSecretToken(user._id);
      res.cookie("token", token, {
-       withCredentials: true,
+       secure:process.env.NODE_ENV === "production",
        httpOnly: true,
+       path:"/"
      });
-     res.status(201).json({ message: "User logged in successfully", success: true });
-     next()
+     res.status(201).json({ message: "User logged in successfully", success: true,token });
+    
   } catch (error) {
     console.error(error);
   }

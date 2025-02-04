@@ -1,5 +1,5 @@
 import React from "react";
-
+import Cookies from "js-cookie";
 function LeftSection({
   imageUrl,
   product,
@@ -7,10 +7,10 @@ function LeftSection({
   productLinkName,
   productLink,
   productInfo,
-  token,
   googlePlay,
   appStore,
 }) {
+  const token = Cookies.get("Token");
   return (
     <div className="container mt-5">
       <div className="row d-flex  align-items-center justify-content-between">
@@ -30,7 +30,7 @@ function LeftSection({
           <div className="mb-4">
             {productLinkName && (
               <a
-                href={productLink}
+                href={token ? productLink : "/login"}
                 style={{ marginRight: "3rem", textDecoration: "none" }}
               >
                 {productLinkName} <i class="fa-solid fa-arrow-right"></i>
