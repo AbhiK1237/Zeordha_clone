@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsx && vite-build"
+    "build": "vite-build"
   },
   "eslintConfig": {
     "extends": [
