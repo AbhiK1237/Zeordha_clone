@@ -10,7 +10,7 @@ app.use(cookieParser());
 
 app.use(express.json());
 const corsOptions = {
-    origin:['http://localhost:3000',"http://localhost:3001","https://kitedashboard.vercel.app/"],
+    origin:['http://localhost:3000',"http://localhost:3001","https://kitedashboard.vercel.app"],
     credentials: true,
 } ;
 app.options("*", cors(corsOptions)); // Handle preflight requests globally
