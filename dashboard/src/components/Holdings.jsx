@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
+import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
 
 //import { holdings } from "../data/data";
@@ -7,13 +7,19 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
-  useEffect(async () => {
-    await axios
-      .get("https://zeordha-clone.onrender.com/allHoldings")
-      .then((res) => {
-        // console.log(res.data);
+  useEffect(() => {
+    const fetchHoldings = async () => {
+      try {
+        const res = await axios.get(
+          "https://zeordha-clone.onrender.com/allHoldings"
+        );
         setAllHoldings(res.data);
-      });
+      } catch (error) {
+        console.error("Error fetching holdings data:", error);
+      }
+    };
+
+    fetchHoldings();
   }, []);
 
   // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
