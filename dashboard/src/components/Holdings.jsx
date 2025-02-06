@@ -7,11 +7,13 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
-  useEffect(() => {
-    axios.get("https://zeordha-clone.onrender.com/allHoldings").then((res) => {
-      // console.log(res.data);
-      setAllHoldings(res.data);
-    });
+  useEffect(async () => {
+    await axios
+      .get("https://zeordha-clone.onrender.com/allHoldings")
+      .then((res) => {
+        // console.log(res.data);
+        setAllHoldings(res.data);
+      });
   }, []);
 
   // const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
