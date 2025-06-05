@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../utils/useAuth";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-
+import { signInWithGooglePopup } from "../utils/firebase.utils";
 function Navbar() {
   const auth = getAuth();
   const user = useAuth();
@@ -13,6 +13,12 @@ function Navbar() {
     } catch (err) {
       console.error("Error signing out:", err.message);
     }
+  };
+
+  const handleLogin = async () => {
+    const response = await signInWithGooglePopup();
+    console.log(response);
+    router("/");
   };
 
   // useEffect(() => {
@@ -76,7 +82,7 @@ function Navbar() {
               </li>
             ) : (
               <li class="nav-item">
-                <Link className="nav-link active" to="/login">
+                <Link className="nav-link active" to="" onClick={handleLogin}>
                   Login
                 </Link>
               </li>
