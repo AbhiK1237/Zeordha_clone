@@ -4,7 +4,7 @@
 TradeNest is a comprehensive trading platform web application that simulates real-world stock trading experiences. Built with modern web technologies, it features a responsive landing page, an interactive trading dashboard, and a robust backend API.
 
 ![TradeNest Banner](./images/banner.png)
-![Products page](./images/productsPage.png)
+
 
 ## 🚀 Features
 
@@ -29,9 +29,8 @@ TradeNest is a comprehensive trading platform web application that simulates rea
 - **JWT Security** - Secure token-based authentication
 - **Session Management** - Persistent login sessions
 
-![Dashboard Preview](./images/dashboard.png)
+![Dashboard Preview](./images/Dashboard.png)
 ![Holdings Preview](./images/Holdings1.png)
-![Holdings Preview](./images/Holdings2.png)
 
 ## 🛠️ Tech Stack
 
@@ -157,7 +156,6 @@ Make sure you have the following installed:
 3. **Access Trading Dashboard** → `http://localhost:3001`
 4. **Start Trading** → Add stocks to watchlist, view portfolio, place orders
 
-![Usage Flow](./docs/images/usage-flow.png)
 
 ## 🌐 API Documentation
 
@@ -197,13 +195,10 @@ Make sure you have the following installed:
 ## 🎨 Screenshots
 
 ### Landing Page
-![Landing Page](./docs/images/landing-page.png)
+![Landing Page](./images/landingpage.png)
 
 ### Trading Dashboard
-![Trading Dashboard](./docs/images/trading-dashboard.png)
-
-### Portfolio Management
-![Portfolio](./docs/images/portfolio.png)
+![Holdings Dashboard](./images/Holdings2.png)
 
 ## 🚀 Deployment
 
